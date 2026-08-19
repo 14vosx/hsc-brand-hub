@@ -1,134 +1,71 @@
-# hsc-brand-hub
+# HSC Brand Hub
 
-Hub público da marca HSC, responsável pela superfície institucional do apex `haxixesmokeclub.com`, identidade visual, linguagem de marca e assets públicos essenciais.
+Superfície institucional da marca HSC no domínio apex.
 
-## Papel no ecossistema HSC
+## Papel
 
-Este repositório mantém a superfície pública de marca no domínio apex `https://haxixesmokeclub.com`.
+O Brand Hub comunica:
 
-O Brand Hub apresenta o HSC como clube/marca e serve como referência prática para identidade visual, tom de voz e linguagem institucional. Ele complementa o Portal CS2, mas não substitui o produto player-facing competitivo.
+- marca;
+- identidade visual;
+- linguagem;
+- entrada institucional;
+- links para produtos HSC.
 
-Este repositório não é:
+Ele complementa, mas não substitui:
 
-- o Portal CS2;
-- o Backoffice;
-- a Auth API;
-- o ETL;
-- a documentação canônica completa do ecossistema.
+- HSC CS2 Portal;
+- Player Area;
+- Match Room;
+- Backoffice.
 
-## Escopo
+## Estado atual do código
 
-- Homepage estática do Brand Hub.
-- SEO básico via `robots.txt` e `sitemap.xml`.
-- Identidade visual e linguagem de marca.
-- Baseline de marca em `docs/brand-identity-baseline.md`.
-- Assets públicos necessários ao site estático, se existirem.
+O repositório ainda representa uma superfície estática baseada em HTML/CSS.
 
-## Fora de escopo
-
-- Rankings, partidas, mapas e Seasons do Portal CS2.
-- Administração interna.
-- Autenticação.
-- Geração da Static API v2.
-- Deploy de Auth API, Backoffice ou Portal.
-- Configuração de Nginx, DNS ou TLS sem runbook explícito.
-
-## Estrutura principal
-
-- `index.html`: página principal estática do Brand Hub.
-- `robots.txt`: diretivas básicas para crawlers.
-- `sitemap.xml`: sitemap público do site.
-- `docs/brand-identity-baseline.md`: baseline local de identidade visual e linguagem de marca.
-- `AGENTS.md`: regras operacionais críticas para trabalho neste repositório.
-
-## Desenvolvimento local
-
-Como o site é estático e hoje não usa `package.json`, framework, build tool ou dependências, a revisão local pode ser feita abrindo `index.html` diretamente no navegador.
-
-Opcionalmente, para servir a pasta com um servidor estático local simples:
-
-```bash
-python3 -m http.server 8080
-```
-
-Esse comando é apenas local, não representa produção e não adiciona dependência ao repositório.
-
-## Publicação / deploy boundary
-
-A produção usa release directories e um symlink `current`:
+Existe uma evolução planejada para:
 
 ```text
-/var/www/brand-hub/releases/<release-name>
-/var/www/brand-hub/current
+Angular 22
 ```
 
-O webroot produtivo é:
+com nova identidade/layout já prototipada externamente.
 
-```text
-/var/www/brand-hub/current
-```
+Essa migração é uma frente própria e não faz parte do caminho crítico atual da Match Room.
 
-Nunca trate `/var/www/brand-hub` ou `/var/www/brand-hub/current` como Git working tree.
+## Deploy / hosting
 
-Nunca rode `git pull` dentro de webroot público.
+Existe contexto operacional recente que precisa ser reconciliado antes de documentar o hosting como definitivo.
 
-Publique somente os artefatos estáticos necessários ao Brand Hub.
+Não assumir automaticamente que:
 
-Não publique:
+- o webroot atual;
+- o método atual de publicação;
+- o target futuro VPS/web hosting
 
-- `.git`
-- `.github`
-- `.env`
-- `.npmrc`
-- `node_modules`
-- `package-lock.json`, salvo se o projeto futuramente virar build-based por decisão explícita
-- arquivos source-only não necessários ao site público
+são equivalentes.
 
-Deploy real exige aprovação e runbook explícito.
+A decisão de manter web hosting ou consolidar na VPS deve ser tratada em uma frente específica com auditoria runtime.
 
-## Relação com outros repositórios
+## Redirects
 
-- `hsc-cs2-portal`: produto player-facing CS2; pode reutilizar identidade, mas não deve copiar layout cegamente.
-- `hsc-cs2-etl`: gera Static API v2; sem dependência direta do Brand Hub.
-- `hsc-auth-api`: Auth/content API; sem dependência direta do Brand Hub.
-- `hsc-backoffice-admin`: UI administrativa; separado do Brand Hub.
-- `hsc-docs`: documentação canônica do ecossistema e decisões.
-- `hsc-brand-hub`: referência de marca e superfície apex.
+Regras de redirect relacionadas ao ecossistema podem viver fora do artefato frontend, incluindo Nginx na VPS. Não duplicar regras cegamente no Angular.
+
+## Lovable
+
+Lovable pode ser usado como fonte de referência visual/prototipação.
+
+Ele não é autoridade de:
+
+- domínio;
+- autenticação;
+- contratos;
+- routing produtivo;
+- comportamento de runtime.
 
 ## Segurança
 
-- Não commitar segredos.
-- Não adicionar `.env`.
-- Não publicar arquivos internos.
-- Preservar SEO files salvo tarefa explícita.
-- Respeitar `AGENTS.md`.
-- Não tomar decisões de Nginx, cutover ou domínio sem aprovação.
-
-## Documentação relacionada
-
-Local:
-
-- `docs/brand-identity-baseline.md`
-
-Canônica em `hsc-docs`:
-
-- `docs/00-governance/hsc-repositories-map.md`
-- `docs/03-portal-estatico/brand-hub-root-product-and-surface-decisions.md`
-- `docs/03-portal-estatico/brand-hub-root-publishing-and-cutover-runtime.md`
-- `docs/01-infra-hostinger/nginx-static-serving.md`
-- `docs/03-portal-estatico/nginx-publishing-cache.md`
-
-## Workflow
-
-- Trabalhar em branch.
-- Preferir PRs pequenos e focados.
-- Antes de finalizar:
-
-```bash
-git diff --check
-git diff --stat
-git status --short
-```
-
-- Para mudanças visuais, validar manualmente a página.
-- Não fazer deploy como parte de PR de README.
+- não publicar arquivos internos;
+- não transformar webroot em Git working tree;
+- não fazer deploy por `git pull` em webroot;
+- não expor `.env` ou configs operacionais.
