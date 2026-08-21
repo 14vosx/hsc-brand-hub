@@ -2,7 +2,7 @@
 
 ## Project context
 
-This repository contains the public Brand Hub for Haxixe Smoke Club.
+This repository contains the public Brand Hub for HASH SMOKE CLUB.
 
 Repository:
 
