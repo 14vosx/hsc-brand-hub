@@ -1,1111 +1,294 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Haxixe Smoke Club — Clube antes de servidor</title>
-    <meta
-      name="description"
-      content="Haxixe Smoke Club — Tactical Chill. Competição com identidade. Clube antes de servidor."
-    />
-    <meta name="robots" content="index,follow" />
-    <meta name="theme-color" content="#080C10" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Haxixe Smoke Club" />
-    <meta
-      property="og:title"
-      content="Haxixe Smoke Club — Clube antes de servidor"
-    />
-    <meta
-      property="og:description"
-      content="Clube digital onde competição e resenha coexistem. Tactical Chill. Competição com identidade."
-    />
-    <meta property="og:url" content="https://haxixesmokeclub.com/" />
-
-    <style>
-      :root {
-        --hsc-white: #f3f8fb;
-        --hsc-black: #05080b;
-
-        --hsc-cyan-50: #e8f8ff;
-        --hsc-cyan-60: #beefff;
-        --hsc-cyan-70: #7fe2ff;
-        --hsc-cyan-80: #32d1ff;
-        --hsc-cyan-90: #1da7f2;
-        --hsc-cyan-95: #0e7fd1;
-
-        --hsc-dark-04: #05080b;
-        --hsc-dark-06: #080c10;
-        --hsc-dark-08: #0b1015;
-        --hsc-dark-10: #10161c;
-        --hsc-dark-12: #141b22;
-        --hsc-dark-15: #1a232d;
-
-        --hsc-grey-50: #6f7d89;
-        --hsc-grey-60: #8896a2;
-        --hsc-grey-70: #a2afb8;
-        --hsc-grey-80: #c1cbd2;
-        --hsc-grey-90: #dce3e8;
-        --hsc-grey-95: #eef3f6;
-
-        --bg-page: #080c10;
-        --bg-section: #0b1015;
-        --bg-surface: #10161c;
-        --bg-surface-hover: #141b22;
-
-        --text-primary: #f3f8fb;
-        --text-secondary: #a2afb8;
-        --text-muted: #6f7d89;
-
-        --accent-primary: #1da7f2;
-        --accent-bright: #32d1ff;
-        --accent-soft: #7fe2ff;
-        --accent-deep: #0e7fd1;
-
-        --border-soft: rgba(255, 255, 255, 0.06);
-        --border-strong: rgba(255, 255, 255, 0.1);
-        --divider: rgba(255, 255, 255, 0.08);
-        --glow-accent: rgba(29, 167, 242, 0.22);
-
-        --radius-sm: 12px;
-        --radius-md: 16px;
-        --radius-lg: 20px;
-        --radius-xl: 28px;
-        --radius-pill: 999px;
-
-        --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.28);
-        --shadow-strong: 0 24px 80px rgba(0, 0, 0, 0.42);
-
-        --container: 1200px;
-        --nav-height: 78px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        background:
-          radial-gradient(
-            circle at 10% 0%,
-            rgba(29, 167, 242, 0.15),
-            transparent 26%
-          ),
-          radial-gradient(
-            circle at 100% 15%,
-            rgba(50, 209, 255, 0.08),
-            transparent 20%
-          ),
-          linear-gradient(180deg, #05080b 0%, #080c10 45%, #0b1015 100%);
-        color: var(--text-primary);
-        font-family: Inter, Arial, Helvetica, sans-serif;
-        line-height: 1.6;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      img {
-        display: block;
-        max-width: 100%;
-      }
-
-      .container {
-        width: min(calc(100% - 32px), var(--container));
-        margin: 0 auto;
-      }
-
-      .eyebrow,
-      .section-label {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        min-height: 34px;
-        padding: 0 14px;
-        border-radius: var(--radius-pill);
-        border: 1px solid var(--border-soft);
-        background: rgba(255, 255, 255, 0.03);
-        color: var(--text-secondary);
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        min-height: var(--nav-height);
-        backdrop-filter: blur(18px);
-        background: rgba(8, 12, 16, 0.72);
-        border-bottom: 1px solid var(--border-soft);
-      }
-
-      .topbar-inner {
-        min-height: var(--nav-height);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        min-width: 0;
-        flex: 0 0 auto;
-      }
-
-      .brand__logo {
-        width: 40px;
-        height: 40px;
-        flex: 0 0 auto;
-      }
-
-      .brand__name {
-        font-family: "Kumbh Sans", Inter, Arial, sans-serif;
-        font-weight: 700;
-        font-size: 18px;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: var(--text-primary);
-        white-space: nowrap;
-      }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-      }
-
-      .nav__links {
-        display: flex;
-        align-items: center;
-        gap: 22px;
-        flex-wrap: wrap;
-      }
-
-      .nav__links a {
-        color: var(--text-secondary);
-        font-size: 14px;
-        font-weight: 500;
-        transition: color 0.16s ease;
-      }
-
-      .nav__links a:hover {
-        color: var(--text-primary);
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 46px;
-        padding: 0 18px;
-        border-radius: var(--radius-md);
-        border: 1px solid transparent;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 1;
-        transition:
-          transform 0.16s ease,
-          background 0.16s ease,
-          border-color 0.16s ease,
-          color 0.16s ease,
-          box-shadow 0.16s ease;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-
-      .btn--primary {
-        color: #031018;
-        background: var(--accent-primary);
-        border-color: rgba(29, 167, 242, 0.85);
-        box-shadow: 0 12px 28px var(--glow-accent);
-      }
-
-      .btn--secondary {
-        color: var(--text-primary);
-        background: rgba(255, 255, 255, 0.03);
-        border-color: var(--border-soft);
-      }
-
-      .btn--ghost {
-        color: var(--text-secondary);
-        background: transparent;
-        border-color: var(--border-soft);
-      }
-
-      .page-section {
-        padding: 32px 0;
-      }
-
-      .hero {
-        padding: 56px 0 28px;
-      }
-
-      .hero__grid {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 28px;
-        align-items: stretch;
-      }
-
-      .hero__content {
-        padding: 12px 0;
-      }
-
-      .hero__logo {
-        width: 72px;
-        height: 72px;
-        margin-bottom: 18px;
-      }
-
-      .hero__title {
-        margin: 18px 0 14px;
-        font-family: "Kumbh Sans", Inter, Arial, sans-serif;
-        font-weight: 800;
-        font-size: clamp(54px, 8vw, 96px);
-        line-height: 0.92;
-        letter-spacing: -0.05em;
-        max-width: 760px;
-      }
-
-      .hero__subtitle {
-        margin: 0 0 16px;
-        font-family: "Kumbh Sans", Inter, Arial, sans-serif;
-        font-weight: 700;
-        font-size: clamp(24px, 3vw, 34px);
-        line-height: 1.05;
-        color: var(--text-primary);
-        letter-spacing: -0.03em;
-        max-width: 620px;
-      }
-
-      .hero__copy {
-        margin: 0;
-        max-width: 700px;
-        color: var(--text-secondary);
-        font-size: 18px;
-        line-height: 1.85;
-      }
-
-      .hero__actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 26px;
-      }
-
-      .hero__pills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 18px;
-      }
-
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        min-height: 34px;
-        padding: 0 12px;
-        border-radius: var(--radius-pill);
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-soft);
-        color: var(--hsc-grey-80);
-        font-size: 13px;
-        font-weight: 500;
-      }
-
-      .pill--accent {
-        background: rgba(29, 167, 242, 0.12);
-        border-color: rgba(29, 167, 242, 0.3);
-        color: var(--accent-soft);
-      }
-
-      .hero__visual {
-        position: relative;
-        min-height: 520px;
-        border-radius: var(--radius-xl);
-        border: 1px solid var(--border-soft);
-        background:
-          radial-gradient(
-            circle at 70% 28%,
-            rgba(29, 167, 242, 0.22),
-            transparent 18%
-          ),
-          radial-gradient(
-            circle at 45% 70%,
-            rgba(50, 209, 255, 0.1),
-            transparent 20%
-          ),
-          linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.04),
-            rgba(255, 255, 255, 0.02)
-          ),
-          var(--bg-surface);
-        overflow: hidden;
-        box-shadow: var(--shadow-strong);
-      }
-
-      .hero__visual::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 26%),
-          linear-gradient(135deg, rgba(29, 167, 242, 0.08), transparent 38%);
-        pointer-events: none;
-      }
-
-      .hero__visual-badge {
-        position: absolute;
-        inset: auto auto 32px 32px;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        min-height: 38px;
-        padding: 0 14px;
-        border-radius: var(--radius-pill);
-        border: 1px solid var(--border-soft);
-        background: rgba(8, 12, 16, 0.72);
-        color: var(--text-secondary);
-        font-size: 13px;
-        font-weight: 500;
-        backdrop-filter: blur(12px);
-      }
-
-      .hero__shield {
-        position: absolute;
-        right: 4%;
-        top: 50%;
-        width: min(72%, 420px);
-        transform: translateY(-50%);
-        opacity: 0.12;
-        filter: saturate(1.1);
-      }
-
-      .section-card {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-soft);
-        border-radius: var(--radius-xl);
-        padding: 28px;
-        box-shadow: var(--shadow-soft);
-      }
-
-      .section-title {
-        margin: 0 0 14px;
-        font-family: "Kumbh Sans", Inter, Arial, sans-serif;
-        font-weight: 700;
-        font-size: clamp(32px, 5vw, 56px);
-        line-height: 0.98;
-        letter-spacing: -0.04em;
-        max-width: 900px;
-      }
-
-      .section-copy {
-        margin: 0;
-        color: var(--text-secondary);
-        font-size: 17px;
-        line-height: 1.8;
-        max-width: 860px;
-      }
-
-      .manifesto {
-        padding-top: 12px;
-      }
-
-      .manifesto .section-card {
-        background:
-          linear-gradient(
-            180deg,
-            rgba(29, 167, 242, 0.06),
-            rgba(255, 255, 255, 0.02)
-          ),
-          rgba(255, 255, 255, 0.03);
-      }
-
-      .code-grid {
-        margin-top: 22px;
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .code-card {
-        padding: 20px;
-        border-radius: var(--radius-lg);
-        background: var(--bg-surface);
-        border: 1px solid var(--border-soft);
-      }
-
-      .code-card h3 {
-        margin: 0 0 8px;
-        font-family: "Kumbh Sans", Inter, Arial, sans-serif;
-        font-size: 22px;
-        line-height: 1.05;
-        letter-spacing: -0.02em;
-      }
-
-      .code-card p {
-        margin: 0;
-        color: var(--text-secondary);
-        font-size: 15px;
-        line-height: 1.7;
-      }
-
-      .section-closing {
-        margin: 20px 0 0;
-        color: var(--text-primary);
-        font-family: "Kumbh Sans", Inter, Arial, sans-serif;
-        font-size: 22px;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-      }
-
-      .portal-grid,
-      .community-grid,
-      .vision-grid,
-      .final-grid,
-      .footer-grid {
-        display: grid;
-        gap: 20px;
-      }
-
-      .portal-grid,
-      .community-grid,
-      .vision-grid,
-      .final-grid,
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .portal-list,
-      .vision-list {
-        list-style: none;
-        margin: 18px 0 0;
-        padding: 0;
-        display: grid;
-        gap: 10px;
-      }
-
-      .portal-list li,
-      .vision-list li {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        color: var(--text-secondary);
-        font-size: 15px;
-        line-height: 1.7;
-      }
-
-      .portal-list li::before,
-      .vision-list li::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        margin-top: 8px;
-        border-radius: 50%;
-        background: var(--accent-primary);
-        box-shadow: 0 0 0 5px rgba(29, 167, 242, 0.1);
-        flex: 0 0 auto;
-      }
-
-      .portal-preview {
-        min-height: 340px;
-        border-radius: var(--radius-xl);
-        border: 1px solid var(--border-soft);
-        background:
-          linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.04),
-            rgba(255, 255, 255, 0.02)
-          ),
-          var(--bg-surface);
-        overflow: hidden;
-        position: relative;
-        box-shadow: var(--shadow-soft);
-      }
-
-      .portal-preview__bar {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 16px 18px;
-        border-bottom: 1px solid var(--border-soft);
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .portal-preview__dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.18);
-      }
-
-      .portal-preview__body {
-        padding: 18px;
-        display: grid;
-        gap: 12px;
-      }
-
-      .portal-preview__line {
-        height: 16px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.05);
-      }
-
-      .portal-preview__line--cyan {
-        background: rgba(29, 167, 242, 0.18);
-      }
-
-      .portal-preview__grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-top: 6px;
-      }
-
-      .portal-preview__card {
-        min-height: 92px;
-        border-radius: var(--radius-lg);
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-soft);
-      }
-
-      .impact-line {
-        margin-top: 18px;
-        font-family: "Kumbh Sans", Inter, Arial, sans-serif;
-        font-size: clamp(26px, 4vw, 44px);
-        line-height: 1.02;
-        letter-spacing: -0.04em;
-        color: var(--text-primary);
-        max-width: 700px;
-      }
-
-      .vision-statements {
-        display: grid;
-        gap: 12px;
-        margin-top: 18px;
-      }
-
-      .vision-statement {
-        padding: 16px 18px;
-        border-radius: var(--radius-lg);
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-soft);
-        color: var(--text-primary);
-        font-family: "Kumbh Sans", Inter, Arial, sans-serif;
-        font-size: 24px;
-        line-height: 1.08;
-        letter-spacing: -0.03em;
-      }
-
-      .final-card {
-        background:
-          linear-gradient(
-            180deg,
-            rgba(29, 167, 242, 0.1),
-            rgba(255, 255, 255, 0.02)
-          ),
-          rgba(255, 255, 255, 0.03);
-      }
-
-      .footer {
-        padding: 28px 0 56px;
-      }
-
-      .footer {
-        border-top: 1px solid var(--border-soft);
-        margin-top: 12px;
-      }
-
-      .footer-brand {
-        display: flex;
-        align-items: flex-start;
-        gap: 14px;
-      }
-
-      .footer-brand__logo {
-        width: 44px;
-        height: 44px;
-        flex: 0 0 auto;
-      }
-
-      .footer-brand__name {
-        margin: 0 0 6px;
-        font-family: "Kumbh Sans", Inter, Arial, sans-serif;
-        font-weight: 700;
-        font-size: 22px;
-        line-height: 1.05;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-      }
-
-      .footer-brand__tag {
-        margin: 0;
-        color: var(--text-secondary);
-        font-size: 15px;
-        line-height: 1.75;
-        max-width: 58ch;
-      }
-
-      .footer-links {
-        display: grid;
-        gap: 10px;
-        align-content: start;
-      }
-
-      .footer-links a {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 14px 16px;
-        border-radius: var(--radius-md);
-        border: 1px solid var(--border-soft);
-        background: rgba(255, 255, 255, 0.03);
-        color: var(--text-secondary);
-        font-size: 14px;
-        font-weight: 500;
-        transition:
-          color 0.16s ease,
-          border-color 0.16s ease,
-          transform 0.16s ease;
-      }
-
-      .footer-links a:hover {
-        color: var(--text-primary);
-        border-color: var(--border-strong);
-        transform: translateY(-1px);
-      }
-
-      @media (max-width: 1080px) {
-        .hero__grid,
-        .portal-grid,
-        .community-grid,
-        .vision-grid,
-        .final-grid,
-        .footer-grid {
-          grid-template-columns: 1fr;
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>HASH SMOKE CLUB | Counter-Strike 2 Club</title>
+
+  <meta name="description"
+    content="HASH SMOKE CLUB — comunidade e competição de Counter-Strike 2. Entre no Portal HSC." />
+
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#000000" />
+
+  <link rel="canonical" href="https://haxixesmokeclub.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="HASH SMOKE CLUB" />
+  <meta property="og:title" content="HASH SMOKE CLUB | Counter-Strike 2 Club" />
+  <meta property="og:description" content="HASH SMOKE CLUB — comunidade e competição de Counter-Strike 2." />
+  <meta property="og:url" content="https://haxixesmokeclub.com/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Chakra+Petch:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-bg: #000000;
+
+      --color-text-main: #f2eee7;
+      --color-text-muted: #b2ada5;
+
+      --color-primary: #c69749;
+      --color-primary-strong: #d8ad68;
+      --color-on-accent: #0b0905;
+
+      --color-border: rgba(242, 238, 231, 0.16);
+
+      --font-display: "Chakra Petch", ui-sans-serif, system-ui, sans-serif;
+      --font-sans:
+        "Barlow",
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: var(--color-bg);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-text-main);
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+
+      width: 100vw;
+      height: 100vh;
+      height: 100svh;
+      height: 100dvh;
+
+      display: grid;
+      place-items: center;
+
+      overflow: hidden;
+      background: var(--color-bg);
+    }
+
+    .hero__video {
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+
+      pointer-events: none;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+
+      background:
+        radial-gradient(circle at 50% 40%,
+          rgba(198, 151, 73, 0.05) 0%,
+          rgba(0, 0, 0, 0) 36%),
+        rgba(0, 0, 0, 0.52);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+
+      background: linear-gradient(180deg,
+          rgba(0, 0, 0, 0.2) 0%,
+          rgba(0, 0, 0, 0) 38%,
+          rgba(0, 0, 0, 0.22) 100%);
+
+      pointer-events: none;
+    }
+
+    .hero__content {
+      position: absolute;
+      top: 24%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: min(90vw, 920px);
+      padding: 24px 20px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      text-align: center;
+    }
+
+    .hero__logo {
+      width: clamp(60px, 5vw, 82px);
+      height: auto;
+      margin-bottom: 20px;
+
+      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
+    }
+
+    .hero__title {
+      margin: 0;
+
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4.8vw, 4.6rem);
+      font-weight: 700;
+      line-height: 0.96;
+      letter-spacing: 0.05em;
+
+      color: var(--color-text-main);
+      text-transform: uppercase;
+
+      text-wrap: balance;
+
+      text-shadow: 0 8px 32px rgba(0, 0, 0, 0.52);
+    }
+
+    .hero__subtitle {
+      margin: 14px 0 0;
+
+      font-family: var(--font-display);
+      font-size: clamp(0.78rem, 1.1vw, 0.96rem);
+      font-weight: 500;
+      line-height: 1.35;
+      letter-spacing: 0.22em;
+
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+    }
+
+    .hero__cta {
+      min-height: 48px;
+      margin-top: 22px;
+      padding: 0 22px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid var(--color-primary);
+      border-radius: 6px;
+
+      background: var(--color-primary);
+      color: var(--color-on-accent);
+
+      font-family: var(--font-display);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+
+      text-decoration: none;
+      text-transform: uppercase;
+
+      box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.28),
+        0 0 20px rgba(198, 151, 73, 0.08);
+
+      transition:
+        background-color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .hero__cta:hover {
+      background: var(--color-primary-strong);
+      border-color: var(--color-primary-strong);
+
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 16px 38px rgba(0, 0, 0, 0.38),
+        0 0 30px rgba(198, 151, 73, 0.16);
+    }
+
+    .hero__cta:focus-visible {
+      outline: 3px solid var(--color-text-main);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 640px) {
+      @media (max-width: 640px) {
+        .hero__content {
+          top: 22%;
+          width: min(92vw, 520px);
+          padding-inline: 18px;
         }
 
-        .code-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-      }
-
-      @media (max-width: 820px) {
-        .topbar-inner {
-          min-height: auto;
-          padding: 14px 0;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .nav {
-          width: 100%;
-          justify-content: flex-start;
-        }
-
-        .nav__links {
-          gap: 16px;
-        }
-
-        .hero {
-          padding-top: 40px;
-        }
-
-        .hero__title {
-          font-size: clamp(44px, 14vw, 72px);
+        .hero__logo {
+          margin-bottom: 16px;
         }
 
         .hero__subtitle {
-          font-size: 24px;
+          margin-top: 12px;
         }
 
-        .hero__copy,
-        .section-copy {
-          font-size: 16px;
-        }
-
-        .hero__actions {
-          display: grid;
-        }
-
-        .btn {
-          width: 100%;
+        .hero__cta {
+          margin-top: 20px;
         }
       }
+    }
 
-      @media (max-width: 640px) {
-        .brand__name {
-          font-size: 16px;
-        }
-
-        .code-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .hero__pills {
-          display: grid;
-        }
-
-        .hero__visual {
-          min-height: 360px;
-        }
-
-        .section-card {
-          padding: 22px;
-        }
+    @media (prefers-reduced-motion: reduce) {
+      .hero__cta {
+        transition: none;
       }
-    </style>
-  </head>
-  <body>
-    <header class="topbar">
-      <div class="container topbar-inner">
-        <a class="brand" href="/" aria-label="Ir para a home do HSC">
-          <img
-            class="brand__logo"
-            src="/img/logo/svg/HSC-shield-mono-light.svg"
-            alt="HSC"
-            width="40"
-            height="40"
-          />
-          <span class="brand__name">Haxixe Smoke Club</span>
-        </a>
 
-        <nav class="nav" aria-label="Navegação principal">
-          <div class="nav__links">
-            <a href="#manifesto">Manifesto</a>
-            <a href="#portal">Portal CS2</a>
-            <a href="/content/news/">News</a>
-            <a href="#visao">Visão</a>
-          </div>
-          <a class="btn btn--primary" href="/portal/cs2/"
-            >Entrar no Portal CS2</a
-          >
-        </nav>
-      </div>
-    </header>
+      .hero__cta:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
 
-    <main>
-      <section class="hero">
-        <div class="container hero__grid">
-          <div class="hero__content">
-            <img
-              class="hero__logo"
-              src="/img/logo/svg/HSC-shield-primary-accent.svg"
-              alt="HSC"
-              width="72"
-              height="72"
-            />
+<body>
+  <main class="hero">
+    <video class="hero__video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="video/hsc-hero-60.mp4" type="video/mp4" />
+    </video>
 
-            <div class="eyebrow">
-              Tactical Chill • Clube digital • Counter-Strike 2
-            </div>
+    <section class="hero__content" aria-labelledby="hero-title">
+      <img class="hero__logo" src="img/logo/svg/HSC-shield-primary-gold.svg" alt="" width="508" height="512" />
 
-            <h1 class="hero__title">Clube antes de servidor.</h1>
+      <h1 id="hero-title" class="hero__title">
+        HASH SMOKE CLUB
+      </h1>
 
-            <p class="hero__subtitle">
-              Competição com identidade. Resenha com propósito.
-            </p>
+      <p class="hero__subtitle">
+        Counter-Strike 2 Club
+      </p>
 
-            <p class="hero__copy">
-              O Haxixe Smoke Club é um clube digital onde competição e resenha
-              coexistem. Aqui a smoke é tática. Aqui a resenha é sagrada. A
-              gente joga sério, mas não vive sério. A gente compete, mas não
-              destrói o outro.
-            </p>
+      <a class="hero__cta" href="https://haxixesmokeclub.com/portal/cs2">
+        Entrar no Portal
+      </a>
+    </section>
+  </main>
+</body>
 
-            <div class="hero__actions">
-              <a class="btn btn--primary" href="/portal/cs2/"
-                >Entrar no Portal CS2</a
-              >
-              <a class="btn btn--secondary" href="#manifesto"
-                >Ler o Manifesto</a
-              >
-            </div>
-
-            <div class="hero__pills" aria-label="Pilares rápidos do HSC">
-              <span class="pill">Counter-Strike competitivo</span>
-              <span class="pill">Cultura chill assumida</span>
-              <span class="pill">Amizade real</span>
-              <span class="pill pill--accent">Disciplina dentro do jogo</span>
-            </div>
-          </div>
-
-          <aside
-            class="hero__visual"
-            aria-label="Composição visual da marca HSC"
-          >
-            <img
-              class="hero__shield"
-              src="/img/logo/svg/HSC-shield-primary-accent.svg"
-              alt=""
-              aria-hidden="true"
-              width="420"
-              height="420"
-            />
-            <div class="hero__visual-badge">
-              Tactical Chill • Competição com identidade
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="manifesto" class="page-section manifesto">
-        <div class="container">
-          <article class="section-card">
-            <div class="section-label">Manifesto</div>
-            <h2 class="section-title">
-              Não somos apenas um servidor. Somos um clube.
-            </h2>
-            <p class="section-copy">
-              O HSC não existe para ser só mais um lugar onde todo mundo entra,
-              joga e some. Existe para reunir presença, postura, convivência e
-              competição sob a mesma identidade. Aqui o jogo importa. Mas o
-              jeito de jogar importa mais ainda.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="page-section">
-        <div class="container">
-          <article class="section-card">
-            <div class="section-label">Código do clube</div>
-            <h2 class="section-title">Nem caos. Nem ego. Nem bagunça.</h2>
-            <p class="section-copy">
-              Não somos tryhard tóxico. Não somos casual largado. Não somos
-              servidor público caótico. Somos um clube competitivo organizado.
-            </p>
-
-            <div class="code-grid">
-              <article class="code-card">
-                <h3>Regras</h3>
-                <p>Aqui existe código.</p>
-              </article>
-
-              <article class="code-card">
-                <h3>Temporada</h3>
-                <p>O tempo no HSC tem peso.</p>
-              </article>
-
-              <article class="code-card">
-                <h3>Ranking</h3>
-                <p>Competição existe de verdade.</p>
-              </article>
-
-              <article class="code-card">
-                <h3>Consequência</h3>
-                <p>Presença importa.</p>
-              </article>
-            </div>
-
-            <p class="section-closing">
-              Competição com alma. Estrutura com resenha.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="portal" class="page-section">
-        <div class="container portal-grid">
-          <article class="section-card">
-            <div class="section-label">Portal CS2</div>
-            <h2 class="section-title">A porta operacional do clube.</h2>
-            <p class="section-copy">
-              O Portal CS2 é a superfície pública viva do HSC hoje. É onde a
-              operação ganha forma em ranking, partidas, leitura de jogadores e
-              presença real da comunidade.
-            </p>
-
-            <ul class="portal-list">
-              <li>Ranking e progressão</li>
-              <li>Leitura de partidas</li>
-              <li>Identidade competitiva</li>
-              <li>Camada pública do clube</li>
-            </ul>
-
-            <div style="margin-top: 22px">
-              <a class="btn btn--primary" href="/portal/cs2/"
-                >Entrar no Portal CS2</a
-              >
-            </div>
-          </article>
-
-          <aside
-            class="portal-preview"
-            aria-label="Preview estático do Portal CS2"
-          >
-            <div class="portal-preview__bar">
-              <span class="portal-preview__dot"></span>
-              <span class="portal-preview__dot"></span>
-              <span class="portal-preview__dot"></span>
-            </div>
-
-            <div class="portal-preview__body">
-              <div
-                class="portal-preview__line portal-preview__line--cyan"
-                style="width: 38%"
-              ></div>
-              <div class="portal-preview__line" style="width: 82%"></div>
-              <div class="portal-preview__line" style="width: 66%"></div>
-
-              <div class="portal-preview__grid">
-                <div class="portal-preview__card"></div>
-                <div class="portal-preview__card"></div>
-                <div class="portal-preview__card"></div>
-                <div class="portal-preview__card"></div>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="page-section">
-        <div class="container community-grid">
-          <article class="section-card">
-            <div class="section-label">Comunidade</div>
-            <h2 class="section-title">No fim, o que fica é o grupo.</h2>
-            <p class="section-copy">
-              O que importa aqui não é só estatística. É o clip inesperado. É o
-              clutch gritado. É o meme do mapa perdido. É a resenha pós-round. É
-              a história que vai ficando.
-            </p>
-            <p class="impact-line">
-              Se o HSC fechar amanhã, o que vai fazer falta não é o servidor. É
-              o grupo.
-            </p>
-          </article>
-
-          <article class="section-card">
-            <div class="section-label">Pertencimento</div>
-            <h2 class="section-title" style="font-size: clamp(28px, 4vw, 40px)">
-              Presença, memória e convivência.
-            </h2>
-            <p class="section-copy">
-              O HSC não quer só hospedar partida. Quer criar presença. Quer
-              criar memória. Quer criar pertencimento. O clube existe para
-              juntar jogo, convivência e identidade em um mesmo lugar, sem
-              perder a leveza e sem abandonar a disciplina.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="visao" class="page-section">
-        <div class="container vision-grid">
-          <article class="section-card">
-            <div class="section-label">Visão</div>
-            <h2 class="section-title">Não queremos ser só um servidor.</h2>
-            <p class="section-copy">
-              O HSC quer crescer como clube, plataforma, identidade e presença
-              digital. O objetivo não é virar massa sem forma. É crescer com
-              controle, memória e assinatura.
-            </p>
-          </article>
-
-          <aside class="section-card">
-            <div class="section-label">Direção</div>
-            <div class="vision-statements">
-              <div class="vision-statement">Crescimento com controle</div>
-              <div class="vision-statement">Clube com história</div>
-              <div class="vision-statement">Plataforma com identidade</div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="page-section">
-        <div class="container">
-          <article class="section-card final-card">
-            <div class="final-grid">
-              <div>
-                <div class="section-label">Entrada final</div>
-                <h2 class="section-title">
-                  Se você veste o HSC, entra do jeito certo.
-                </h2>
-              </div>
-
-              <div>
-                <p class="section-copy">
-                  Você joga sério. Você respeita. Você participa. Você constrói.
-                  Você evolui.
-                </p>
-
-                <div
-                  style="
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 12px;
-                    margin-top: 22px;
-                  "
-                >
-                  <a class="btn btn--primary" href="/portal/cs2/"
-                    >Entrar no Portal CS2</a
-                  >
-                  <a class="btn btn--secondary" href="/content/news/"
-                    >Ver News</a
-                  >
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <img
-            class="footer-brand__logo"
-            src="/img/logo/svg/HSC-shield-mono-light.svg"
-            alt="HSC"
-            width="44"
-            height="44"
-          />
-          <div>
-            <h3 class="footer-brand__name">Haxixe Smoke Club</h3>
-            <p class="footer-brand__tag">
-              Tactical Chill. Competição com identidade. Mais que servidor. Mais
-              que estética. Mais que ranking. Um clube com código, memória e
-              presença.
-            </p>
-          </div>
-        </div>
-
-        <nav class="footer-links" aria-label="Links do rodapé">
-          <a href="/portal/cs2/">
-            <span>Portal CS2</span>
-            <span>→</span>
-          </a>
-          <a href="#manifesto">
-            <span>Manifesto</span>
-            <span>→</span>
-          </a>
-          <a href="/content/news/">
-            <span>News</span>
-            <span>→</span>
-          </a>
-        </nav>
-      </div>
-    </footer>
-  </body>
 </html>
